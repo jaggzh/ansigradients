@@ -3,10 +3,13 @@ single, gray, and multi-color gradients.
 
 ![ansigradients script output](ansigradients-img.png)
 
-
-The text output, without colors, is:
+The text output, without colors, is currently something like:
 
 ```FG: esc[38;5;#m   BG: esc[48;5;#m
+# Number is calculated with: 16 + 36*r + 6*g + b
+( The 16 skips the standard 8 colors, 8 bright colors.
+  Grays go from [232 to 255] )
+
 Red values  : {16 52 88 124 160 196 }
 Green values: {16 22 28 34 40 46 }
 Blue values : {16 17 18 19 20 21 }

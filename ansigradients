@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 use POSIX;
+use strict;
+use warnings;
 
 # ansi code as a number
 sub an { my ($r,$g,$b) = @_; 16 + 36*$r + 6*$g + $b; }
@@ -9,9 +11,16 @@ sub abg { my ($r,$g,$b) = @_; sprintf("\033[48;5;%sm", an($r,$g,$b)); }
 # printed
 sub abgp { my ($r,$g,$b) = @_; printf("\033[48;5;%sm", an($r,$g,$b)); }
 sub afgp { my ($r,$g,$b) = @_; printf("\033[38;5;%sm", an($r,$g,$b)); }
-my $rst = "\033[0m";
 
-print "FG: esc[38;5;#m   BG: esc[48;5;#m\n";
+my $rst = "\033[0m";
+my ($r, $g, $b, $a, $n);
+
+print <<EOT;
+FG: esc[38;5;#m   BG: esc[48;5;#m
+# Number is calculated with: 16 + 36*r + 6*g + b
+( The 16 skips the standard 8 colors, 8 bright colors.
+  Grays go from [232 to 255] )
+EOT
 for my $fgbg (38, 48) {
 	print("Red values  : {");
 	for my $n (0..5) {
